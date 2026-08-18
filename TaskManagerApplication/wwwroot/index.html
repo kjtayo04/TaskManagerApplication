@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Task Board</title>
+  <link rel="stylesheet" href="/css/site.css">
+  <script defer src="/js/taskboard.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Task Board</h1>
+    <div class="controls">
+      <input id="search" placeholder="Search title or description" />
+      <select id="priorityFilter">
+        <option value="">All Priorities</option>
+        <option>Low</option>
+        <option>Medium</option>
+        <option>High</option>
+      </select>
+      <label><input type="checkbox" id="darkToggle"> Dark</label>
+    </div>
+  </header>
+
+  <main>
+    <section class="create">
+      <input id="titleInput" placeholder="Title" />
+      <input id="dueInput" type="date" />
+      <select id="priorityInput"><option>Low</option><option>Medium</option><option>High</option></select>
+      <button id="createBtn">Create</button>
+    </section>
+
+    <section class="board">
+      <div class="column" data-status="todo">
+        <h2>To Do</h2>
+        <div class="list" id="todoList"></div>
+      </div>
+      <div class="column" data-status="inprogress">
+        <h2>In Progress</h2>
+        <div class="list" id="inprogressList"></div>
+      </div>
+      <div class="column" data-status="done">
+        <h2>Done</h2>
+        <div class="list" id="doneList"></div>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>

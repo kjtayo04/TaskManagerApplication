@@ -1,0 +1,71 @@
+:root{
+  --bg:#ffffff;
+  --fg:#111111;
+  --muted:#666666;
+  --card:#f8f8f8;
+  --accent:#2b6cff;
+  --danger:#e11;
+}
+
+body{font-family:Segoe UI,Arial,Helvetica,sans-serif;margin:0;background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased}
+
+header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:12px 20px;background:var(--card);position:sticky;top:0;z-index:40;border-bottom:1px solid rgba(0,0,0,0.05)}
+.controls{display:flex;align-items:center;gap:8px}
+.controls input,.controls select{padding:6px 8px;border-radius:4px;border:1px solid rgba(0,0,0,0.08)}
+
+.create{display:flex;gap:8px;padding:12px;border-bottom:1px solid rgba(0,0,0,0.03);background:transparent;align-items:center}
+.create input,.create select{padding:8px;border-radius:4px;border:1px solid rgba(0,0,0,0.06)}
+
+/* Board container - desktop: 3 flexible columns; mobile: horizontal scroll like Jira */
+.board{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(280px, 1fr));
+  gap:16px;
+  padding:16px;
+  align-items:start;
+}
+
+.column{
+  background:rgba(0,0,0,0.03);
+  padding:10px;
+  border-radius:8px;
+  display:flex;flex-direction:column;
+  min-height:120px;
+  max-height:calc(100vh - 200px);
+  overflow:hidden;
+}
+
+.column > h2{margin:0 0 8px 0;padding:0;font-size:1.05rem}
+.list{overflow:auto;padding-right:6px;display:flex;flex-direction:column;gap:8px}
+
+/* Card */
+.card{background:var(--card);border-radius:6px;padding:12px;margin:0;box-shadow:0 6px 14px rgba(16,24,40,0.04);cursor:grab;position:relative;transition:transform .12s ease,box-shadow .12s ease}
+.card:active{cursor:grabbing}
+.card:hover{transform:translateY(-4px);box-shadow:0 10px 20px rgba(16,24,40,0.08)}
+.card .card-head{display:flex;justify-content:space-between;align-items:center}
+.card .del{background:transparent;border:0;color:var(--muted);cursor:pointer;font-size:1.1rem}
+.card .meta{font-size:0.85rem;color:var(--muted);margin-top:6px}
+.card .desc{margin-top:8px;font-size:0.95rem;color:var(--fg)}
+.card .entered{font-size:0.78rem;color:var(--muted);margin-left:8px}
+
+/* Overdue visual */
+.card.overdue{border-left:4px solid var(--danger)}
+.card.overdue::before{content:'!';color:#fff;background:var(--danger);border-radius:50%;width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;position:absolute;top:8px;right:8px;font-size:12px}
+
+.column.over{box-shadow:0 6px 18px rgba(0,0,0,0.06);outline:2px dashed rgba(0,0,0,0.12)}
+
+/* Responsive: small screens behave like Jira board with horizontal scroll */
+@media (max-width: 900px){
+  .board{display:flex;flex-direction:row;overflow-x:auto;padding:12px;gap:12px}
+  .column{min-width:300px;flex:0 0 300px;max-height:calc(100vh - 160px)}
+  .list{max-height:calc(100vh - 260px)}
+}
+
+/* Very small screens */
+@media (max-width:480px){
+  .column{min-width:260px;flex:0 0 260px}
+  .card{padding:10px}
+}
+
+.dark{--bg:#0f1720;--fg:#e6eef8;--muted:#9aa6b2;--card:#0b1220}
+
